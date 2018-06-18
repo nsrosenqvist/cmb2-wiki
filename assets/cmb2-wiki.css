@@ -1,0 +1,136 @@
+/* -------------------------------------------------------------------------- */
+/* Layout */
+/* -------------------------------------------------------------------------- */
+.cmb2-wiki {
+  display: flex;
+  flex-direction: column;
+}
+
+.cmb2-wiki-menu {
+  order: -1;
+  padding-right: 0;
+}
+
+.cmb2-wiki-files {
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .cmb2-wiki {
+    flex-direction: row;
+    flex: 1;
+  }
+  .cmb2-wiki-files {
+    flex: 1;
+  }
+  .cmb2-wiki-menu {
+    flex: 0 0 14em;
+    padding-right: 25px;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Sidebar */
+/* -------------------------------------------------------------------------- */
+.cmb2-wiki-menu {
+    margin-bottom: 25px;
+    margin-top: -5px;
+}
+
+.cmb2-wiki-menu a {
+    line-height: normal;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 5px 0;
+    display: block;
+    text-decoration: none;
+}
+
+.cmb2-wiki-menu a:focus {
+    box-shadow: none;
+}
+
+.cmb2-wiki-menu li.active a {
+    font-weight: bold;
+    color: #000;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Main */
+/* -------------------------------------------------------------------------- */
+
+/* Meta */
+.cmb2-wiki-meta {
+    margin-top: 25px;
+}
+
+.cmb2-wiki-meta span {
+    box-sizing: border-box;
+    padding: 5px 8px;
+    font-size: 11px;
+    display: inline-block;
+    color: #72777c;
+    background-color: #e5e5e5;
+    border-radius: 5px;
+}
+
+/* Content */
+.cmb2-wiki-file {
+    display: none;
+}
+
+.cmb2-wiki-content > *:first-child {
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.cmb2-wiki-content > *:last-child {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.cmb2-wiki-content img {
+    max-width: 100%;
+}
+
+/* Nav */
+.cmb2-wiki-nav {
+    margin-top: 25px;
+    display: block;
+    overflow: hidden;
+}
+
+.cmb2-wiki-nav a {
+    line-height: normal;
+    box-sizing: border-box;
+    padding: 12px 20px;
+    text-decoration: none;
+    border: 1px solid #0073aa;
+    border-radius: 5px;
+    max-width: 200px;
+    text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.cmb2-wiki-nav a:hover {
+    border-color: #00a0d2;
+}
+
+.cmb2-wiki-nav a:active,
+.cmb2-wiki-nav a:hover {
+    border-color: #00a0d2;
+}
+
+.cmb2-wiki-nav a:focus {
+    border-color: #124964;
+    box-shadow: none;
+}
+
+.cmb2-wiki-nav-previous {
+    float: left;
+}
+
+.cmb2-wiki-nav-next {
+    float: right;
+}

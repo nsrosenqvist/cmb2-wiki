@@ -1,0 +1,22 @@
+{
+    "name": "nsrosenqvist/cmb2-wiki",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "description": "",
+    "homepage": "https://github.com/nsrosenqvist/cmb2-wiki",
+    "autoload": {
+        "psr-4": {
+            "NSRosenqvist\\CMB2\\WikiField\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.0.0",
+        "cmb2/cmb2": "^2.3.0",
+        "league/commonmark": "^0.17",
+        "webuni/commonmark-table-extension": "^0.8"
+    }
+}
