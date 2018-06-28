@@ -28,17 +28,24 @@ class Integration
         add_action('cmb2_render_wiki', function($field, $escaped_value, $object_id, $object_type, $field_type_object) {
 			$id = $field->_id();
 
+			// Enable processing the files with PHP before display
+			$preProcess = $field->args('pre_process') ?: false;
+
+			// Wiki directory (used to create wiki links)
 			$root = $field->args('wiki_root');
 			$root = apply_filters('cmb2_wiki_'.$id.'_wiki_root', $root);
 
+			// Wiki files
 			$files = [];
 			$loadFiles = $field->args('files');
 			$loadFiles = apply_filters('cmb2_wiki_'.$id.'_files', $loadFiles);
 
+			// Theme directory (used to display wiki file location in meta)
 			$themePath = $field->args('theme_root') ?: null;
 			$themePath = $themePath ?? get_stylesheet_directory();
 			$themePath = apply_filters('cmb2_wiki_'.$id.'_theme_root', $themePath);
 
+			// Load the contents of every file
 			foreach ($loadFiles as $file) {
 				if (! file_exists($file) && file_exists($root.'/'.$file)) {
 					$file = $root.'/'.$file;
@@ -48,6 +55,24 @@ class Integration
 					$title = apply_filters('cmb2_wiki_file_title', null, $file);
 					$title = apply_filters('cmb2_wiki_'.$id.'_file_title', $title, $file) ?? basename($file);
 
+					// Either simply get the contents or include as PHP
+					if (! $preProcess) {
+						$content = file_get_contents($file);
+					}
+					else {
+						$obLevel = ob_get_level();
+				        ob_start();
+
+				        try {
+				            include $file;
+				        }
+						catch (Exception $e) {
+				            // Do nothing
+				        }
+
+				        $content = ltrim(ob_get_clean());
+					}
+
 					$files[] = [
 						'name' => str_replace(trailingslashit($root), '', $file),
 						'title' => $title,
@@ -55,7 +80,7 @@ class Integration
 						'root' => $root,
 						'themePath' => str_replace(trailingslashit($themePath), '', $file),
 						'relPath' => str_replace(trailingslashit($root), '', $file),
-						'content' => file_get_contents($file),
+						'content' => $content,
 					];
 				}
 			}

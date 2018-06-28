@@ -16,6 +16,7 @@ $wiki = $docs->add_field(array(
     'meta' => true, // Display file path and modification date
     'wiki_root' => __DIR__.'/wiki',
     'theme_root' => __DIR__,
+    'pre_process' => true, // Enables running PHP code in the file before displaying it
     'files' => [
         __DIR__.'/wiki/Introduction.md',
     ],
