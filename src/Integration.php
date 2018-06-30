@@ -55,9 +55,18 @@ class Integration
 					$title = apply_filters('cmb2_wiki_file_title', null, $file);
 					$title = apply_filters('cmb2_wiki_'.$id.'_file_title', $title, $file) ?? basename($file);
 
+					$fileInfo = [
+						'name' => str_replace(trailingslashit($root), '', $file),
+						'title' => $title,
+						'path' => $file,
+						'root' => $root,
+						'themePath' => str_replace(trailingslashit($themePath), '', $file),
+						'relPath' => str_replace(trailingslashit($root), '', $file),
+					];
+
 					// Either simply get the contents or include as PHP
 					if (! $preProcess) {
-						$content = file_get_contents($file);
+						$fileInfo['content'] = file_get_contents($file);
 					}
 					else {
 						$obLevel = ob_get_level();
@@ -70,18 +79,11 @@ class Integration
 				            // Do nothing
 				        }
 
-				        $content = ltrim(ob_get_clean());
+				        $fileInfo['content'] = ltrim(ob_get_clean());
 					}
 
-					$files[] = [
-						'name' => str_replace(trailingslashit($root), '', $file),
-						'title' => $title,
-						'path' => $file,
-						'root' => $root,
-						'themePath' => str_replace(trailingslashit($themePath), '', $file),
-						'relPath' => str_replace(trailingslashit($root), '', $file),
-						'content' => $content,
-					];
+
+					$files[] = $fileInfo;
 				}
 			}
 
