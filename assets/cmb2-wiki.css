@@ -3,6 +3,8 @@
 /* -------------------------------------------------------------------------- */
 .cmb2-wiki {
   display: flex;
+  width: 100%;
+  max-width: 100%;
   flex-direction: column;
 }
 
@@ -12,6 +14,9 @@
 }
 
 .cmb2-wiki-files {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
     box-sizing: border-box;
 }
 
@@ -133,4 +138,58 @@
 
 .cmb2-wiki-nav-next {
     float: right;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Elements */
+/* -------------------------------------------------------------------------- */
+/* Lists */
+.cmb2-wiki-files ul {
+    padding-left: 20px;
+    margin: 13px 0;
+}
+.cmb2-wiki-content ul > li {
+    font-size: 13px;
+    line-height: 1.5;
+    list-style: disc;
+    margin-bottom: 3px;
+}
+.cmb2-wiki-content ul li > ul {
+    margin: 3px 0 0 0;
+}
+.cmb2-wiki-content ul li > ul > li {
+    list-style: circle;
+}
+
+/* Code */
+.cmb2-wiki-content pre > code {
+    display: block;
+}
+
+/* Tables */
+.cmb2-wiki-content table {
+    margin: 13px 0;
+    border-collapse: collapse;
+}
+.cmb2-wiki-content table th,
+.cmb2-wiki-content table td {
+    padding: 5px 10px;
+    width: auto;
+}
+
+.cmb2-wiki-content table td,
+.cmb2-wiki-content table th {
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+.cmb2-wiki-content table th {
+    border-bottom: 2px solid #ccc;
+}
+.cmb2-wiki-content table th:last-child,
+.cmb2-wiki-content table td:last-child {
+    border-right: none;
+}
+
+.cmb2-wiki-content table tr:last-child td {
+    border-bottom: none;
 }
